@@ -10,8 +10,22 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
 
 	const db = client.db(databaseName);
 
-	db.collection('users').insertOne({
-		name: 'Dani',
-		age: 23
-	});
+	// db.collection('users').insertOne({
+	// 	name: 'Dani',
+	// 	age: 23
+	// });
+
+	db
+		.collection('tasks')
+		.insertMany(
+			[
+				{ description: 'Buy a keyboard', completed: false },
+				{ description: 'Install mongodb', completed: true }
+			],
+			(error, result) => {
+				if (error) return console.log('Unable to insert tasks');
+
+				console.log(result.ops);
+			}
+		);
 });
