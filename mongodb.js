@@ -15,17 +15,35 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
 	// 	age: 23
 	// });
 
-	db
-		.collection('tasks')
-		.insertMany(
-			[
-				{ description: 'Buy a keyboard', completed: false },
-				{ description: 'Install mongodb', completed: true }
-			],
-			(error, result) => {
-				if (error) return console.log('Unable to insert tasks');
+	// db
+	// 	.collection('tasks')
+	// 	.insertMany(
+	// 		[
+	// 			{ description: 'Buy a keyboard', completed: false },
+	// 			{ description: 'Install mongodb', completed: true }
+	// 		],
+	// 		(error, result) => {
+	// 			if (error) return console.log('Unable to insert tasks');
 
-				console.log(result.ops);
-			}
-		);
+	// 			console.log(result.ops);
+	// 		}
+	// 	);
+
+	db.collection('users').findOne({ name: 'Dani' }, (error, user) => {
+		if (error) return console.log('Unable to fetch');
+
+		console.log(user);
+	});
+
+	db.collection('users').find({ age: 23 }).toArray((error, users) => {
+		if (error) return console.log('Unable to fetch');
+
+		console.log(users);
+	});
+
+	db.collection('users').find({ age: 23 }).count((error, count) => {
+		if (error) return console.log('Unable to fetch');
+
+		console.log(count);
+	});
 });
