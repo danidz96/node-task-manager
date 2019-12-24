@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "mongoose": "^5.8.3"
+    "mongoose": "^5.8.3",
+    "validator": "^12.1.0"
   }
 }
