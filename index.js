@@ -43,6 +43,28 @@ app.post('/users', (req, res) => {
 		});
 });
 
+app.get('/tasks', (req, res) => {
+	Task.find()
+		.then((tasks) => {
+			res.send(tasks);
+		})
+		.catch((error) => {
+			res.status(500).send();
+		});
+});
+
+app.get('/tasks/:id', (req, res) => {
+	const id = req.params.id;
+
+	Task.findById(id)
+		.then((task) => {
+			res.send(task);
+		})
+		.catch((error) => {
+			res.status(404).send();
+		});
+});
+
 app.post('/tasks', (req, res) => {
 	const task = new Task(req.body);
 	task
