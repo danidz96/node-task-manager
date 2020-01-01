@@ -11,16 +11,6 @@ router.get('/users/me', auth, async (req, res) => {
 	}
 });
 
-router.get('/users/:id', async (req, res) => {
-	const id = req.params.id;
-	try {
-		const user = await User.findById(id);
-		res.send(user);
-	} catch (error) {
-		res.status(404).send();
-	}
-});
-
 router.post('/users', async (req, res) => {
 	const user = new User(req.body);
 
@@ -83,12 +73,10 @@ router.patch('/users/:id', async (req, res) => {
 	}
 });
 
-router.delete('/users/:id', async (req, res) => {
-	const id = req.params.id;
-
+router.delete('/users/me', auth, async (req, res) => {
 	try {
-		const user = await User.findByIdAndDelete(id);
-		res.send(user);
+		await req.user.remove();
+		res.send(req.user);
 	} catch (error) {
 		res.status(404).send(error);
 	}
