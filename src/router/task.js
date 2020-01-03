@@ -3,10 +3,13 @@ const router = new express.Router();
 const Task = require('../models/task');
 const auth = require('../middleware/auth');
 
-router.get('/tasks', async (req, res) => {
+router.get('/tasks', auth, async (req, res) => {
 	try {
-		const tasks = await Task.find();
-		res.send(tasks);
+		// const tasks = await Task.find({ owner: req.user._id });
+		// res.send(tasks);
+
+		await req.user.populate('tasks').execPopulate();
+		res.send(req.user.tasks);
 	} catch (error) {
 		res.status(500).send();
 	}
