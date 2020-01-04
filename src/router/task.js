@@ -3,16 +3,19 @@ const router = new express.Router();
 const Task = require('../models/task');
 const auth = require('../middleware/auth');
 
-// GET /tasks?completed=true&limit=3&skip=2
+// GET /tasks?completed=true&limit=3&skip=2&sortBy=createdAt:desc
 router.get('/tasks', auth, async (req, res) => {
 	try {
-		// const tasks = await Task.find({ owner: req.user._id });
-		// res.send(tasks);
-
 		let match = {};
+		let sort = {};
 
 		if (req.query.completed) {
 			match.completed = req.query.completed === 'true';
+		}
+
+		if (req.query.sortBy) {
+			const parts = req.query.sortBy.split(':');
+			sort[parts[0]] = parts[1] === 'desc' ? -1 : 1;
 		}
 
 		await req.user
@@ -21,7 +24,8 @@ router.get('/tasks', auth, async (req, res) => {
 				match,
 				options: {
 					limit: parseInt(req.query.limit),
-					skip: parseInt(req.query.skip)
+					skip: parseInt(req.query.skip),
+					sort
 				}
 			})
 			.execPopulate();
