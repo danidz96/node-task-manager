@@ -1,9 +1,22 @@
 const express = require('express');
-const router = new express.Router();
+const multer = require('multer');
 const User = require('../models/user');
 const auth = require('../middleware/auth');
+const router = new express.Router();
 
 router.get('/users/me', auth, async (req, res) => {
+	try {
+		res.send(req.user);
+	} catch (error) {
+		res.status(500).send(error);
+	}
+});
+
+const upload = multer({
+	dest: 'avatars'
+});
+
+router.post('/users/me/avatar', upload.single('avatar'), async (req, res) => {
 	try {
 		res.send(req.user);
 	} catch (error) {
