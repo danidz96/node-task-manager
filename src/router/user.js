@@ -25,6 +25,21 @@ const upload = multer({
 	}
 });
 
+router.get('/users/:id/avatar', async (req, res) => {
+	try {
+		const user = await User.findById(req.params.id);
+
+		if (!user || !user.avatar) {
+			throw new Error();
+		}
+
+		res.set('Content-type', 'image/jpg');
+		res.send(user.avatar);
+	} catch (error) {
+		res.status(404).send();
+	}
+});
+
 router.post(
 	'/users/me/avatar',
 	auth,
