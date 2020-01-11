@@ -7,10 +7,10 @@
 		"start": "node src/index.js",
 		"dev": "nodemon src/index.js",
 		"test": "jest --watch"
-  },
-  "jest": {
-    "testEnviroment": "node"
-  },
+	},
+	"jest": {
+		"testEnviroment": "node"
+	},
 	"author": "Dani Dominguez",
 	"license": "ISC",
 	"dependencies": {
@@ -25,6 +25,7 @@
 		"validator": "^12.1.0"
 	},
 	"devDependencies": {
+		"env-cmd": "^10.0.1",
 		"jest": "^24.9.0",
 		"nodemon": "^2.0.2"
 	}
