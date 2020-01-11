@@ -1,28 +1,28 @@
 {
-  "name": "task-manager",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "test": "jest"
-  },
-  "author": "Dani Dominguez",
-  "license": "ISC",
-  "dependencies": {
-    "@sendgrid/mail": "^6.4.0",
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.3",
-    "multer": "^1.4.2",
-    "sharp": "^0.23.4",
-    "validator": "^12.1.0"
-  },
-  "devDependencies": {
-    "jest": "^24.9.0",
-    "nodemon": "^2.0.2"
-  }
+	"name": "task-manager",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node src/index.js",
+		"dev": "nodemon src/index.js",
+		"test": "jest --watch"
+	},
+	"author": "Dani Dominguez",
+	"license": "ISC",
+	"dependencies": {
+		"@sendgrid/mail": "^6.4.0",
+		"bcryptjs": "^2.4.3",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.8.3",
+		"multer": "^1.4.2",
+		"sharp": "^0.23.4",
+		"validator": "^12.1.0"
+	},
+	"devDependencies": {
+		"jest": "^24.9.0",
+		"nodemon": "^2.0.2"
+	}
 }
