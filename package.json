@@ -7,7 +7,10 @@
 		"start": "node src/index.js",
 		"dev": "nodemon src/index.js",
 		"test": "jest --watch"
-	},
+  },
+  "jest": {
+    "testEnviroment": "node"
+  },
 	"author": "Dani Dominguez",
 	"license": "ISC",
 	"dependencies": {
