@@ -9,7 +9,7 @@
 		"test": "env-cmd -f ./config/test.env jest --watch"
 	},
 	"jest": {
-		"testEnviroment": "node"
+		"testEnvironment": "node"
 	},
 	"author": "Dani Dominguez",
 	"license": "ISC",
