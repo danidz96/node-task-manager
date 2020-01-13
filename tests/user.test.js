@@ -1,11 +1,16 @@
 const request = require('supertest');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const app = require('../src/app');
 const User = require('../src/models/user');
 
+const userOneId = new mongoose.Types.ObjectId();
 const userOne = {
+	_id: userOneId,
 	name: 'Mireia',
 	email: 'mireia@email.com',
-	password: 'pass1234'
+	password: 'pass1234',
+	tokens: [ { token: jwt.sign({ _id: userOneId }, process.env.SECRET_KEY) } ]
 };
 
 beforeEach(async () => {
@@ -33,4 +38,8 @@ test('Should not login nonexisting user', async () => {
 		.post('/users/login')
 		.send({ email: 'nonexistingmal@email.com', password: 'fakepassword' })
 		.expect(400);
+});
+
+test('Should get profile for user', async () => {
+	await request(app).get('/users/me').set('Authorization', `Bearer ${userOne.tokens[0].token}`).send().expect(200);
 });
