@@ -25,23 +25,24 @@ const taskOne = {
 	_id: new mongoose.Types.ObjectId(),
 	description: 'First task',
 	completed: true,
-	owner: userOneId._id
+	owner: userOne._id
 };
 const taskTwo = {
 	_id: new mongoose.Types.ObjectId(),
 	description: 'Second task',
 	completed: true,
-	owner: userOneId._id
+	owner: userOne._id
 };
 const taskThree = {
 	_id: new mongoose.Types.ObjectId(),
 	description: 'Third task',
 	completed: false,
-	owner: userTwoId._id
+	owner: userTwo._id
 };
 
 const setupDatabase = async () => {
 	await User.deleteMany();
+	await Task.deleteMany();
 	await new User(userOne).save();
 	await new User(userTwo).save();
 	await new Task(taskOne).save();
